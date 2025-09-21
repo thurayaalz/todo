@@ -1,34 +1,61 @@
-:root{
-    --cyan: #197278;
-    --green: #283d3b;
-    --gray: #edddd4;
-    --red: #c44536;
-    --brown: #772e25;
+:root {
+  --cyan: #197278;
+  --green: #283d3b;
+  --gray: #edddd4;
+  --red: #c44536;
+  --brown: #772e25;
 }
-body{
-    overflow: hidden;
-    background-color:var(--cyan);
+html {
+  font-family: monospace;
 }
-.control{
-    position: absolute;
-    bottom: -9px;
-    height: 50px;
-    width: 85vw;
-    border-radius: 10px ;
-    padding: 20px;
-    justify-content: center;
-    align-content: center;
-    background-color: var(--gray);
+.erea{
+    width: 99vw;
+    height: 99vh;
+    display: grid;
+    grid-template-rows:  1fr  3fr ;
+    grid-template-columns: 1fr;
+}
+body {
+  overflow: hidden;
+  background-color: var(--cyan);
+}
+.control {
+    box-shadow: 10px 10px 5px 0px rgba(79, 79, 79, 60%);
+    margin: auto;
+  height: 40px;
+  width: 80vw;
+  border-radius: 10px;
+  padding: 20px;
+  justify-content: center;
+  align-content: center;
+  background-color: var(--gray);
 }
 
-.control button{
-    border-radius: 10px;
-    background-color: var(--red);
-    color: white;
-    padding: 8px;
-    border: none;
-    margin: 10px;
+.control button {
+  font-family: monospace;
+  border-radius: 10px;
+  background-color: var(--red);
+  color: white;
+  padding: 8px;
+  border: none;
+  margin: 10px;
 }
-.control button:hover{
-    background-color: var(--brown);
+.control button:hover {
+    cursor: pointer;
+  background-color: var(--brown);
+}
+.taskBoard {
+  background-color: var(--gray);
+  height: 90%;
+  width: 85vw;
+  position: relative;
+  border-radius: 15px;
+  margin: auto;
+  box-shadow: 10px 10px 5px 0px rgba(79, 79, 79, 60%);
+
+}
+
+.inputBox{
+    color: var(--red);
+    font-size: 3rem;
 }
