@@ -1,11 +1,10 @@
-import "./index.js";
-import "./listeners.js";
+const container = document.querySelector(".taskBoard");
 
-export function renderInput(){
-    const container = document.querySelector(".taskBoard");
-    const inputBox = document.createElement("div");
-    inputBox.classList = "inputBox";
-    inputBox.innerHTML = `<div class="inputBox">
+export function renderInput() {
+  if (document.querySelector(".inputBox")) return;
+  const inputBox = document.createElement("div");
+  inputBox.classList = "inputBox";
+  inputBox.innerHTML = `
             Task Title<input type="text" id="title">
             Due Date <input type="date" id="date">
             Priority </br>
@@ -17,9 +16,17 @@ export function renderInput(){
             
             <input type="radio" id="high" name="priority" value="2">
             <label for="high">!!!</label>
-        </br>
+            </br>
             Done? <input type="checkbox" id="status"> </br>
             <button id="insertTask" type="submit"> Add Task</button>
-        </div>`;
-    container.appendChild(inputBox);
+       `;
+       
+  container.appendChild(inputBox);
+}
+
+export function insertTask() {
+    const Task = document.createElement("h3");
+    Task.innerHTML = "what the HECK";
+    container.removeChild(document.getElementById("inputBox"));
+    container.appendChild(Task);
 }

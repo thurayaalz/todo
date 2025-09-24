@@ -1,6 +1,6 @@
 import "./todo.css";
-import "./listeners.js";
 import "./renders.js"
+import "./listeners.js";
 
 export class Task {
   constructor(title, date, prior, project) {
@@ -15,3 +15,4 @@ export class Task {
     this.status = !this.status;
   }
 }
+
