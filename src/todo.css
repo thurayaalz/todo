@@ -9,19 +9,19 @@ html {
   font-family: monospace;
 }
 .erea{
-    width: 99vw;
-    height: 99vh;
-    display: grid;
-    grid-template-rows:  1fr  3fr ;
-    grid-template-columns: 1fr;
+  width: 99vw;
+  height: 99vh;
+  display: grid;
+  grid-template-rows:  1fr  3fr ;
+  grid-template-columns: 1fr;
 }
 body {
   overflow: hidden;
   background-color: var(--cyan);
 }
 .control {
-    box-shadow: 10px 10px 5px 0px rgba(79, 79, 79, 60%);
-    margin: auto;
+  box-shadow: 10px 10px 5px 0px rgba(79, 79, 79, 60%);
+  margin: auto;
   height: 40px;
   width: 80vw;
   border-radius: 10px;
@@ -31,7 +31,7 @@ body {
   background-color: var(--gray);
 }
 
-.control button , .inputBox button {
+.control button , .inputBox button , .taskBody button {
   font-family: monospace;
   border-radius: 10px;
   background-color: var(--red);
@@ -40,8 +40,8 @@ body {
   border: none;
   margin: 10px;
 }
-.control button:hover , .inputBox button:hover{
-    cursor: pointer;
+.control button:hover , .inputBox button:hover ,  .taskBody button:hover {
+  cursor: pointer;
   background-color: var(--brown);
 }
 .taskBoard {
@@ -56,18 +56,31 @@ body {
 }
 
 .inputBox{
-    right: 35%;
-    position: absolute;
-    box-shadow:  10px 10px 5px 0px rgba(79, 79, 79, 60%);
-    border-radius: 10px;
-    height: 200px;
-    width: 200px;
-    color: var(--gray);
-    font-size: 1.2rem;
-    padding:15px;
-    background-color: var(--green);
+  right: 35%;
+  position: absolute;
+  box-shadow:  10px 10px 5px 0px rgba(79, 79, 79, 60%);
+  border-radius: 10px;
+  height: 200px;
+  width: 200px;
+  color: var(--gray);
+  font-size: 1.2rem;
+  padding:15px;
+  background-color: var(--green);
 }
 .inputBox input{
-    border-radius: 5px;
-    background-color: var(--gray);
+  border-radius: 5px;
+  background-color: var(--gray);
+
+}
+
+.taskBody{
+  border: lightgray 1px dashed;
+  padding: 10px;
+  display: flex; 
+  font-size: 1rem;
+}
+.taskBody h3 {
+  width:100%;
+  font-size: 1.5rem;
+  margin-bottom:3px;
 }

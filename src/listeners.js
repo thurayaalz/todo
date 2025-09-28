@@ -1,6 +1,17 @@
-import { insertTask, renderInput } from "./renders.js";
+import {  insertTask, renderInput } from "./renders.js";
+import {taskList} from "./index.js";
+export const tasks = [];
+document.querySelector("#newTask").addEventListener("click", renderInput);
 
-export  const tasks = [];
-document.querySelector("#newTask").addEventListener("click" , renderInput);
+document.addEventListener("click", (e) => {
+    if ( e.target.id === "insertTask") {
+      insertTask();
+      console.log(taskList);
+    }
+  });
 
-document.querySelector("#insertTask").addEventListener("click", insertTask);
+document.addEventListener("click" , (e)=>{
+  if(e.target && e.target.id === "editTask"){
+
+  }
+})

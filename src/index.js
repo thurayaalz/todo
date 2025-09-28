@@ -15,4 +15,5 @@ export class Task {
     this.status = !this.status;
   }
 }
+export const taskList = [];
 
