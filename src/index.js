@@ -18,7 +18,7 @@ export class Task {
 }
 export const taskList = [];
 
-export createTask(){
+export function createTask(){
   const title = document.querySelector("#title").value;
   const date = document.querySelector("#date").value;
   const prior = document.querySelector('input[name="priority"]:checked')?.value;
@@ -34,18 +34,12 @@ export createTask(){
   return newTask;
 }
 
-export editTask(taskIndex){
+export function editTask(taskIndex){
 //get the id then call the render input and vreate task
 
-  const editBtn = e.target.closest(".editTask");
-  if (!editBtn) return;
-
-  const taskDiv = editBtn.closest(".taskBody");
-  const index = taskDiv.dataset.index;
-  con
-
+  createTask(renderInput(taskIndex));
 }
 
-export deleteTask(taskIndex){
+export function deleteTask(taskIndex){
 //get the index and delete the task
 }

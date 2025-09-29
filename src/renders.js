@@ -1,7 +1,7 @@
 import { taskList , Task} from "./index.js";
 const container = document.querySelector(".taskBoard");
 
-export function renderInput(index = null) {
+export function renderInput(index) {
   if (document.querySelector(".inputBox")) return;
   const task = index !==null? taskList[index] : null;
 
@@ -21,11 +21,14 @@ export function renderInput(index = null) {
             <label for="high">!!!</label>
             </br>
             Done? <input type="checkbox" id="status" ${task?.status ? "checked" : ""}> </br>
-            <button id="insertTask" type="submit"> Save</button>
-       `;
+            <button id="insertTask" type="submit"> Save</button>`;
 
-
-  inputbox.dataset.index = index ?? "";
+  inputBox.dataset.index = index ?? "";
+  if (index !=""){
+    taskList[index] = newTask;
+  }else{
+    taskList.push(newTask);    
+  }
   container.appendChild(inputBox);
 }
 
@@ -45,17 +48,13 @@ export function insertTask(newTask) {
 
      <button id="deleteTask">
           <i class="bi bi-x-square"></i>
-        </button>
+        </button>`;
 
-    `;
-
-  //plug another function that holds the task info
   const inputBox = document.querySelector(".inputBox");
-
   container.removeChild(inputBox);
   container.appendChild(vTask);
 }
 
-export renderAll(){
+export function renderAll(){
 
 }
