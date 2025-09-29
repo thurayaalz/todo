@@ -1,42 +1,35 @@
 import { taskList , Task} from "./index.js";
 const container = document.querySelector(".taskBoard");
 
-export function renderInput() {
+export function renderInput(index = null) {
   if (document.querySelector(".inputBox")) return;
+  const task = index !==null? taskList[index] : null;
+
   const inputBox = document.createElement("div");
   inputBox.classList = "inputBox";
   inputBox.innerHTML = `
-            Task Title<input type="text" id="title">
-            Due Date <input type="date" id="date">
+            Task Title<input type="text" id="title" value="${task?.title?? ""}">
+            Due Date <input type="date" id="date" value="${task?.date??""}">
             Priority </br>
-            <input type="radio" id="low" name="priority" value="0">
+            <input type="radio" id="low" name="priority" value="0"${task?.prior == 0 ? "checked" : ""}>
             <label for="low">!</label>
 
-            <input type="radio" id="medium" name="priority" value="1">
+            <input type="radio" id="medium" name="priority" value="1"${task?.prior == 1 ? "checked" : ""}>
             <label for="medium">!!</label>
 
-            <input type="radio" id="high" name="priority" value="2">
+            <input type="radio" id="high" name="priority" value="2" ${task?.prior == 2 ? "checked" : ""}>
             <label for="high">!!!</label>
             </br>
-            Done? <input type="checkbox" id="status"> </br>
-            <button id="insertTask" type="submit"> Add Task</button>
+            Done? <input type="checkbox" id="status" ${task?.status ? "checked" : ""}> </br>
+            <button id="insertTask" type="submit"> Save</button>
        `;
 
+
+  inputbox.dataset.index = index ?? "";
   container.appendChild(inputBox);
 }
 
-export function insertTask() {
-  const title = document.querySelector("#title").value;
-  const date = document.querySelector("#date").value;
-  const prior = document.querySelector('input[name="priority"]:checked')?.value;
-  const status = document.querySelector("#status").checked;
-
-  if (!title) {
-    alert("What was the task title again?");
-    return;
-  }
-  const newTask = new Task(title, date, prior, status);
-  taskList.push(newTask);
+export function insertTask(newTask) {
 
   const vTask = document.createElement("div");
   vTask.classList = "taskBody";
@@ -61,4 +54,8 @@ export function insertTask() {
 
   container.removeChild(inputBox);
   container.appendChild(vTask);
+}
+
+export renderAll(){
+
 }

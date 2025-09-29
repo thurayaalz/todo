@@ -2,6 +2,7 @@ import "./todo.css";
 import "./renders.js"
 import "./listeners.js";
 
+//task Management
 export class Task {
   constructor(title, date, prior, project) {
     this.title = title;
@@ -17,3 +18,34 @@ export class Task {
 }
 export const taskList = [];
 
+export createTask(){
+  const title = document.querySelector("#title").value;
+  const date = document.querySelector("#date").value;
+  const prior = document.querySelector('input[name="priority"]:checked')?.value;
+  const status = document.querySelector("#status").checked;
+
+  if (!title) {
+    alert("What was the task title again?");
+    return;
+  }
+  const newTask = new Task(title, date, prior, status);
+  taskList.push(newTask);
+  
+  return newTask;
+}
+
+export editTask(taskIndex){
+//get the id then call the render input and vreate task
+
+  const editBtn = e.target.closest(".editTask");
+  if (!editBtn) return;
+
+  const taskDiv = editBtn.closest(".taskBody");
+  const index = taskDiv.dataset.index;
+  con
+
+}
+
+export deleteTask(taskIndex){
+//get the index and delete the task
+}
