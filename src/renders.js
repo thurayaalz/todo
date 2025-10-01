@@ -1,4 +1,4 @@
-import { taskList , Task} from "./index.js";
+import { taskList } from "./index.js";
 const container = document.querySelector(".taskBoard");
 
 export function renderInput(index) {
@@ -22,23 +22,16 @@ export function renderInput(index) {
             </br>
             Done? <input type="checkbox" id="status" ${task?.status ? "checked" : ""}> </br>
             <button id="insertTask" type="submit"> Save</button>`;
-
-  inputBox.dataset.index = index ?? "";
-  if (index !=""){
-    taskList[index] = newTask;
-  }else{
-    taskList.push(newTask);    
-  }
   container.appendChild(inputBox);
 }
 
-export function insertTask(newTask) {
+export function insertTask(newTask, index) {
 
   const vTask = document.createElement("div");
   vTask.classList = "taskBody";
+  vTask.dataset.index = index;
   vTask.innerHTML = `
-    <input  type="checkbox" id=taskChk>
-    <h3>${newTask.title}</h3>
+    <input  type="checkbox" id="taskChk"> <h3>${newTask.title}</h3>
     <p>Due: ${newTask.date}</p>
     <p>Priority: ${["Low", "Medium", "High"][newTask.prior]}</p>
     <p>Status: ${newTask.status ? "Done" : "Pending"}</p>
@@ -49,12 +42,17 @@ export function insertTask(newTask) {
      <button id="deleteTask">
           <i class="bi bi-x-square"></i>
         </button>`;
+  vTask.dataset.index = index;
 
   const inputBox = document.querySelector(".inputBox");
   container.removeChild(inputBox);
   container.appendChild(vTask);
 }
 
-export function renderAll(){
-
+export function renderAll() {
+  container.innerHTML = "";
+  taskList.forEach((task, index) => {
+    insertTask(task, index);
+  });
 }
+
