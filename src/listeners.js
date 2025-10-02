@@ -1,23 +1,45 @@
-import {  insertTask, renderInput } from "./renders.js";
-import  {createTask, taskList , editTask } from "./index.js";
-export const tasks = [];
-document.querySelector("#newTask").addEventListener("click", renderInput);
+import { createTask, taskList, editTask, deleteTask } from "./index.js";
+import { renderInput, insertTask, renderAll } from "./renders.js";
+
+let currentEditIndex = null;
+
+document.querySelector("#newTask").addEventListener("click", () => {
+  renderInput(null, false);
+});
 
 document.addEventListener("click", (e) => {
-  if ( e.target.id === "insertTask") {
-    renderInput();
-    insertTask(createTask());
-    console.log(taskList);
+  if (e.target.id === "insertTask") {
+    const newTask = createTask();
+    if (!newTask) return;
+    insertTask(newTask, taskList.length - 1);
+    console.log("Task list after insert:", taskList);
   }
-});
 
-document.addEventListener("click" , (e)=>{
-  if(e.target && e.target.id === "editTask"){
+  if (e.target.closest(".editTask")) {
     const taskDiv = e.target.closest(".taskBody");
-    const index = taskDiv?.dataset.index;
-    renderInput()
-    editTask(index);
+    const index = parseInt(taskDiv?.dataset.index, 10);
+    if (isNaN(index)) {
+      console.error("Invalid index:", taskDiv?.dataset.index);
+      return;
+    }
+    currentEditIndex = index;
+    renderInput(index, true);
   }
-});
 
+  if (e.target.id === "editBtn") {
+    if (currentEditIndex === null) return;
+    editTask(currentEditIndex);
+    renderAll();
+    currentEditIndex = null;
+  }
+  if (e.target.id === "deleteBtn") {
+    const taskDiv = e.target.closest(".taskBody");
+    const index = parseInt(taskDiv?.dataset.index, 10);
+    deleteTask(index);
+    renderAll();
+    currentEditIndex = null;
+  //  console.log("Deleted task at index:", index);
+  }
+
+});
 

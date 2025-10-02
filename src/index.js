@@ -1,8 +1,8 @@
-import "./todo.css";
-import "./renders.js"
+import "./todo.css"
+import "./renders.js";
 import "./listeners.js";
 
-//task Management
+export const taskList = [];
 export class Task {
   constructor(title, date, prior, project) {
     this.title = title;
@@ -11,46 +11,50 @@ export class Task {
     this.project = project;
     this.status = false;
   }
-
-  taskCheck(status) {
+  taskCheck() {
     this.status = !this.status;
   }
-  edit({ title, date, prior, project }) {
+  edit({ title, date, prior, project, status }) {
     if (title) this.title = title;
     if (date) this.date = date;
-    if (prior) this.prior = prior;
+    if (prior !== undefined) this.prior = prior;
     if (project !== undefined) this.project = project;
+    this.status = status;
   }
 }
 
-export const taskList = [];
 
-export function getTask(){
+export function getTask() {
   const title = document.querySelector("#title").value;
   const date = document.querySelector("#date").value;
-  const prior = document.querySelector('input[name="priority"]:checked')?.value;
+  const prior = parseInt(document.querySelector('input[name="priority"]:checked')?.value, 10);
   const status = document.querySelector("#status").checked;
-  return {title, date, prior, status};
+  return { title, date, prior, status };
 }
 
-
-export function createTask(index){
-  const {title,date, prior,status} = getTask();
+export function createTask() {
+  const { title, date, prior, status } = getTask();
   if (!title) {
     alert("What was the task title again?");
-    return;
+    return null;
   }
-  const newTask = new Task(title, date, prior, status);
-  taskList.push(newTask);    
+  const newTask = new Task(title, date, prior, null);
+  newTask.status = status;
+  taskList.push(newTask);
   return newTask;
 }
 
-export function editTask(taskIndex){
+export function editTask(taskIndex) {
   const task = taskList[taskIndex];
-  if (!task)return;
+  if (!task) {
+    console.error("No task found at index:", taskIndex);
+    return;
+  }
   task.edit(getTask());
 }
 
-export function deleteTask(taskIndex){
-  //get the index and delete the task
-}
+ export function deleteTask(taskIndex){
+  
+ taskList.splice( taskIndex,1);
+ console.log(taskIndex);
+ }
