@@ -1,6 +1,7 @@
 import "./todo.css"
 import "./renders.js";
 import "./listeners.js";
+import {saveTasks , loadTasks} from "./storage.js";
 
 export const taskList = [];
 export class Task {
@@ -41,6 +42,8 @@ export function createTask() {
   const newTask = new Task(title, date, prior, null);
   newTask.status = status;
   taskList.push(newTask);
+  saveTasks(taskList);
+  console.log(localStorage)
   return newTask;
 }
 
@@ -51,10 +54,13 @@ export function editTask(taskIndex) {
     return;
   }
   task.edit(getTask());
+  saveTasks(taskList);
+  console.log(localStorage);
 }
-
- export function deleteTask(taskIndex){
-  
+ export function deleteTask(taskIndex){ 
  taskList.splice( taskIndex,1);
+  saveTasks(taskList);
  console.log(taskIndex);
+
+  console.log(localStorage);
  }

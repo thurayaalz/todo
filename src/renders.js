@@ -1,11 +1,11 @@
 import { taskList } from "./index.js";
+import {loadTasks} from "./storage.js";
 const container = document.querySelector(".taskBoard");
 
 export function renderInput(index, editStatus) {
   if (document.querySelector(".inputBox")) return;
 
   const task = index !== null ? taskList[index] : null;
-
   const inputBox = document.createElement("div");
   inputBox.classList = "inputBox";
   inputBox.innerHTML = `
@@ -19,13 +19,14 @@ export function renderInput(index, editStatus) {
     <input type="radio" id="high" name="priority" value="2" ${task?.prior == 2 ? "checked" : ""}>
     <label for="high">!!!</label></br>
     Done? <input type="checkbox" id="status" ${task?.status ? "checked" : ""}> </br>
-  `;
+    <button id="cancleBtn">
+    Cancle
+    </button>`;
 
   const saveBtn = document.createElement("button");
   saveBtn.innerText = "Save";
   saveBtn.id = editStatus ? "editBtn" : "insertTask";
   inputBox.appendChild(saveBtn);
-
   container.appendChild(inputBox);
 }
 
@@ -44,20 +45,18 @@ export function insertTask(newTask, index) {
     </button>
     <button class="deleteTask" id="deleteBtn">
       <i class="bi bi-x-square"></i>
-    </button>
-  `;
-
+    </button>`;
 
   const inputBox = document.querySelector(".inputBox");
   if (inputBox) {
-    container.removeChild(inputBox); // ✅ only if it exists
+    container.removeChild(inputBox);  
   }
-
   container.appendChild(vTask);
 }
 
 export function renderAll() {
   container.innerHTML = "";
+  taskList  = loadTasks();
   taskList.forEach((task, index) => {
     insertTask(task, index);
   });

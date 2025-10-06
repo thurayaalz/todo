@@ -38,8 +38,16 @@ document.addEventListener("click", (e) => {
     deleteTask(index);
     renderAll();
     currentEditIndex = null;
-  //  console.log("Deleted task at index:", index);
+    //  console.log("Deleted task at index:", index);
   }
 
-});
+  if (e.target.id === "cancleBtn") {
+    const container = document.querySelector(".taskBoard");
+    const inputBox = document.querySelector(".inputBox");
+    if (inputBox) {
+      container.removeChild(inputBox); // ✅ only if it exists
+    }
+  }
+}
+);
 
