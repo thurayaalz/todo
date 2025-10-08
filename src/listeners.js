@@ -1,4 +1,4 @@
-import { createTask, taskList, editTask, deleteTask } from "./index.js";
+import { createTask, taskList, editTask, deleteTask , taskDone } from "./index.js";
 import { renderInput, insertTask, renderAll } from "./renders.js";
 
 let currentEditIndex = null;
@@ -47,6 +47,13 @@ document.addEventListener("click", (e) => {
     if (inputBox) {
       container.removeChild(inputBox); // ✅ only if it exists
     }
+  }
+  if (e.target.id == "taskChk"){
+  
+    const taskDiv = e.target.closest(".taskBody");
+    const index = parseInt(taskDiv?.dataset.index, 10);
+    taskDone(index);
+renderAll();
   }
 }
 );

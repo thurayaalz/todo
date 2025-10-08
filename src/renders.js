@@ -1,5 +1,5 @@
 import { taskList } from "./index.js";
-import {loadTasks} from "./storage.js";
+import {loadTasks} from "./storage.js"
 const container = document.querySelector(".taskBoard");
 
 export function renderInput(index, editStatus) {
@@ -36,7 +36,7 @@ export function insertTask(newTask, index) {
   vTask.dataset.index = String(index); // Ensure it's a string
 
   vTask.innerHTML = `
-    <input type="checkbox" id="taskChk"> <h3>${newTask.title}</h3>
+    <input type="checkbox" id="taskChk" ${newTask.status ? "checked" : "" } > <h3>${newTask.title}</h3>
     <p>Due: ${newTask.date}</p>
     <p>Priority: ${["Low", "Medium", "High"][newTask.prior]}</p>
     <p>Status: ${newTask.status ? "Done" : "Pending"}</p>
@@ -56,7 +56,8 @@ export function insertTask(newTask, index) {
 
 export function renderAll() {
   container.innerHTML = "";
-  taskList  = loadTasks();
+  const loadedTasks = loadTasks();
+  taskList.splice(0, taskList.length, ...loadedTasks);
   taskList.forEach((task, index) => {
     insertTask(task, index);
   });

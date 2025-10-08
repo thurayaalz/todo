@@ -1,30 +1,11 @@
 import "./todo.css"
-import "./renders.js";
+import {renderAll , insertTask , renderInput} from "./renders.js";
 import "./listeners.js";
 import {saveTasks , loadTasks} from "./storage.js";
-
+import {Task} from "./task.js";
 export const taskList = [];
-export class Task {
-  constructor(title, date, prior, project) {
-    this.title = title;
-    this.date = date;
-    this.prior = prior;
-    this.project = project;
-    this.status = false;
-  }
-  taskCheck() {
-    this.status = !this.status;
-  }
-  edit({ title, date, prior, project, status }) {
-    if (title) this.title = title;
-    if (date) this.date = date;
-    if (prior !== undefined) this.prior = prior;
-    if (project !== undefined) this.project = project;
-    this.status = status;
-  }
-}
 
-
+renderAll();
 export function getTask() {
   const title = document.querySelector("#title").value;
   const date = document.querySelector("#date").value;
@@ -57,10 +38,19 @@ export function editTask(taskIndex) {
   saveTasks(taskList);
   console.log(localStorage);
 }
- export function deleteTask(taskIndex){ 
- taskList.splice( taskIndex,1);
+export function taskDone(taskIndex){
+  const task = taskList[taskIndex];
+ if (!task) {
+    console.error("No task found at index:", taskIndex);
+    return;
+  }
+  task.taskCheck();
   saveTasks(taskList);
- console.log(taskIndex);
+}
 
+export function deleteTask(taskIndex){ 
+  taskList.splice( taskIndex,1);
+  saveTasks(taskList);
+  console.log(taskIndex);
   console.log(localStorage);
- }
+}
