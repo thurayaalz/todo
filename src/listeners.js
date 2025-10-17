@@ -1,5 +1,5 @@
-import { createTask, taskList, editTask, deleteTask , taskDone } from "./index.js";
-import { renderInput, insertTask, renderAll } from "./renders.js";
+import { createTask, taskList, editTask, deleteTask , taskDone , addProject } from "./task.js";
+import { renderInput, NewProjectInput, insertTask, renderAll } from "./renders.js";
 
 let currentEditIndex = null;
 
@@ -49,11 +49,19 @@ document.addEventListener("click", (e) => {
     }
   }
   if (e.target.id == "taskChk"){
-  
+
     const taskDiv = e.target.closest(".taskBody");
     const index = parseInt(taskDiv?.dataset.index, 10);
     taskDone(index);
-renderAll();
+    renderAll();
+  }
+
+  if (e.target.id == "newProject"){
+    NewProjectInput();
+  }
+  if (e.target.id == "addProjBtn"){
+     const projName = document.getElementById("ProjectName").value;
+    addProject(projName);
   }
 }
 );
