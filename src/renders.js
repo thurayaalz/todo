@@ -1,7 +1,6 @@
 import { projectList, taskList } from "./task.js";
 import {loadTasks} from "./storage.js"
 const container = document.querySelector(".taskBoard");
-
 export function renderInput(index, editStatus) {
   if (document.querySelector(".inputBox")) return;
 
@@ -95,3 +94,7 @@ export function NewProjectInput(){
 
 
 }
+
+
+
+
