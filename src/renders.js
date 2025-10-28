@@ -103,5 +103,5 @@ datalist.innerHTML = projectList.map(proj => `<option>${proj}</option>`).join(""
 export function renderSorted(sortedTasks){
   container.innerText = "";
   sortedTasks.forEach((task , index) =>{
-insertTask(task, index  );
-});}
+    insertTask(task, index  );
+  });}
