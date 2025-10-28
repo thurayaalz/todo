@@ -91,10 +91,12 @@ export function NewProjectInput(){
   saveBtn.id = "addProjBtn";
   projectInput.appendChild(saveBtn);
   container.appendChild(projectInput);
-
-
 }
 
+
+ const datalist = document.getElementById('allProjects');
+    datalist.innerHTML = projectList.map(proj => `<option>${proj}</option>`).join("");
+  
 
 
 

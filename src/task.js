@@ -3,6 +3,8 @@ import "./listeners.js";
 import {saveTasks , loadTasks , saveProject} from "./storage.js";
 export const taskList = [];
 export const projectList = [];
+
+
 export class Task {
   constructor(title, date, prior, project) {
     this.title = title;
@@ -22,6 +24,8 @@ export class Task {
     this.status = status;
   }
 }
+
+
 
 export function getTask() {
   const title = document.querySelector("#title").value;
@@ -55,6 +59,13 @@ export function editTask(taskIndex) {
   task.edit(getTask());
   saveTasks(taskList);
 }
+
+export function deleteTask(taskIndex){ 
+  taskList.splice( taskIndex,1);
+  saveTasks(taskList);
+}
+
+
 export function taskDone(taskIndex){
   const task = taskList[taskIndex];
   if (!task) {
@@ -65,10 +76,6 @@ export function taskDone(taskIndex){
   saveTasks(taskList);
 }
 
-export function deleteTask(taskIndex){ 
-  taskList.splice( taskIndex,1);
-  saveTasks(taskList);
-}
 
 export function addProject(projectName){
   if (projectName){
@@ -77,4 +84,9 @@ export function addProject(projectName){
     console.log(projectList);
   }
   return projectList;
+}
+
+export function sortTasks(projectName){
+  const sortedTasks = taskList.filter((task) =>  task.project ==projectName); 
+  return sortedTasks;
 }
