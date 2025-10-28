@@ -1,5 +1,7 @@
-import { projectList, taskList } from "./task.js";
+import { projectList, taskList , sortTasks} from "./task.js";
 import {loadTasks} from "./storage.js"
+
+
 const container = document.querySelector(".taskBoard");
 export function renderInput(index, editStatus) {
   if (document.querySelector(".inputBox")) return;
@@ -86,7 +88,7 @@ export function NewProjectInput(){
     <button id="cancleBtn"> Cancle </button>
      `;
 
- const saveBtn = document.createElement("button");
+  const saveBtn = document.createElement("button");
   saveBtn.innerText = "Save";
   saveBtn.id = "addProjBtn";
   projectInput.appendChild(saveBtn);
@@ -94,9 +96,12 @@ export function NewProjectInput(){
 }
 
 
- const datalist = document.getElementById('allProjects');
-    datalist.innerHTML = projectList.map(proj => `<option>${proj}</option>`).join("");
-  
+const datalist = document.getElementById('allProjects');
+datalist.innerHTML = projectList.map(proj => `<option>${proj}</option>`).join("");
 
 
-
+export function renderSorted(sortedTasks){
+  container.innerText = "";
+  sortedTasks.forEach((task , index) =>{
+insertTask(task, index  );
+});}

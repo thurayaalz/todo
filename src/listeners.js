@@ -1,5 +1,5 @@
-import { createTask, taskList, editTask, deleteTask , taskDone , addProject } from "./task.js";
-import { renderInput, NewProjectInput, insertTask, renderAll } from "./renders.js";
+import { createTask, taskList, editTask, deleteTask , taskDone , addProject , sortTasks} from "./task.js";
+import { renderInput, NewProjectInput, insertTask, renderSorted , renderAll } from "./renders.js";
 
 let currentEditIndex = null;
 
@@ -66,3 +66,8 @@ document.addEventListener("click", (e) => {
 }
 );
 
+document.getElementById("sort").onchange = ({ target}) =>{
+  if (target.value == "") {renderAll()}
+
+  target.value &&  renderSorted(sortTasks(target.value));
+}    
