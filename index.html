@@ -1,13 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-<script defer src="main.js"></script></head>
-<body>
-    <h2>Does this work?</h2>
-    <h1>oh, yes</h1>
-    
-</body>
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+        />
+  <script defer src="main.js"></script></head>
+
+  <body>
+    <div class="erea">
+      <!--<i class="bi bi-check-square-fill"></i> -->
+      <div class="control">
+        <button id="newTask">
+          <i class="bi bi-check-square"></i>
+          Add task
+        </button>
+        <button id="newProject">
+          <i class="bi bi-ui-checks-grid"></i>
+          Add Project
+
+        </button>
+
+        <input type="text" list="allProjects" id="sort" value=""/> 
+        <datalist id="allProjects">
+          <option value="what"> </option>
+        </datalist>
+      </div>
+
+      <div class="taskBoard">
+
+      </div>
+    </div>
+  </body>
 </html>
